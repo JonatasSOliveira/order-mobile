@@ -9,7 +9,7 @@ interface PaymentMethodObj extends BaseModelObj {
 
 export default class PaymentMethod extends BaseModel {
   private name: string = "";
-
+  
   constructor(paymentMethod?: PaymentMethodObj) {
     super(paymentMethod);
     if (paymentMethod) {
@@ -17,11 +17,11 @@ export default class PaymentMethod extends BaseModel {
     }
   }
 
-  static get tableName(): string {
+  protected static get tableName(): string {
     return "payment_methods";
   }
 
-  static get columnsMapping(): ColumnsMappingType {
+  protected static get columnsMapping(): ColumnsMappingType {
     return {
       name: {
         type: "TEXT",
@@ -30,7 +30,7 @@ export default class PaymentMethod extends BaseModel {
     };
   }
 
-  static async getAll(): Promise<PaymentMethod[]> {
+  public static async getAll(): Promise<PaymentMethod[]> {
     const paymentMethodsObj = await super.findAll<PaymentMethodObj>();
     const paymentMethods: PaymentMethod[] = paymentMethodsObj.map(
       (paymentMethodsObj) => new PaymentMethod(paymentMethodsObj)
@@ -39,15 +39,15 @@ export default class PaymentMethod extends BaseModel {
     return paymentMethods;
   }
 
-  setName(name: string) {
+  public setName(name: string) {
     this.name = name;
   }
 
-  getName(): string {
+  public getName(): string {
     return this.name;
   }
 
-  async save(): Promise<void> {
+  public async save(): Promise<void> {
     const valuesToSave = {
       name: this.name.trim().toUpperCase(),
     };
