@@ -44,8 +44,8 @@ export default function PaymentMethods() {
 
   const navigation = useNavigation<drawerNavigatorProp>();
 
-  function openPaymentMethodsForm(paymentMethod?: PaymentMethod) {
-    navigation.navigate("PaymentMethodsForm", { paymentMethod });
+  function openPaymentMethodForm(paymentMethod?: PaymentMethod) {
+    navigation.navigate("PaymentMethodForm", { paymentMethod });
   }
 
   async function loadData() {
@@ -65,7 +65,7 @@ export default function PaymentMethods() {
           renderItem={({ item }) => (
             <PaymentMethodRow
               paymentMethod={item}
-              onPressEdit={openPaymentMethodsForm}
+              onPressEdit={openPaymentMethodForm}
             />
           )}
           keyExtractor={(item) => item.getId().toString()}
@@ -76,7 +76,7 @@ export default function PaymentMethods() {
           mode="contained"
           color={lightTheme.PRIMARY}
           icon="plus-circle"
-          onPress={openPaymentMethodsForm}
+          onPress={() => openPaymentMethodForm()}
         >
           Nova Forma de Pagamento
         </Button>

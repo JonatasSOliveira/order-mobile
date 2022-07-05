@@ -5,8 +5,8 @@ import {
 } from "@react-navigation/stack";
 
 import DrawerNavigator from "../DrawerNavigator/index";
-
-import PaymentMethodsForm from "../../pages/PaymentMethodsForm";
+import PaymentMethodForm from "../../pages/PaymentMethodForm";
+import ProductForm from "../../pages/ProductForm";
 
 import lightTheme from "../../styles/themes/light";
 
@@ -35,10 +35,17 @@ export default function StackNavigator() {
           }}
         />
         <Stack.Screen
-          name="PaymentMethodsForm"
-          component={PaymentMethodsForm}
+          name="PaymentMethodForm"
+          component={PaymentMethodForm}
           options={{
             title: "Forma de Pagamento",
+          }}
+        />
+        <Stack.Screen
+          name="ProductForm"
+          component={ProductForm}
+          options={{
+            title: "Produto",
           }}
         />
       </Stack.Navigator>

@@ -9,7 +9,7 @@ interface PaymentMethodObj extends BaseModelObj {
 
 export default class PaymentMethod extends BaseModel {
   private name: string = "";
-  
+
   constructor(paymentMethod?: PaymentMethodObj) {
     super(paymentMethod);
     if (paymentMethod) {

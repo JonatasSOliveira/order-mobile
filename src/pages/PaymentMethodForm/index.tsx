@@ -13,21 +13,21 @@ import lightTheme from "../../styles/themes/light";
 
 import PaymentMethod from "../../models/PaymentMethod";
 
-type paymentMethodsFormNavigationProp = StackNavigationProp<
+type PaymentMethodFormNavigationProp = StackNavigationProp<
   RootStackParamList,
-  "PaymentMethodsForm"
+  "PaymentMethodForm"
 >;
 
-type paymentMethodsFormRouteProp = RouteProp<
+type PaymentMethodFormRouteProp = RouteProp<
   RootStackParamList,
-  "PaymentMethodsForm"
+  "PaymentMethodForm"
 >;
 
-export default function PaymentMethodsForm() {
+export default function PaymentMethodForm() {
   const [name, setName] = useState("");
 
-  const navigation = useNavigation<paymentMethodsFormNavigationProp>();
-  const route = useRoute<paymentMethodsFormRouteProp>();
+  const navigation = useNavigation<PaymentMethodFormNavigationProp>();
+  const route = useRoute<PaymentMethodFormRouteProp>();
 
   function goBack() {
     navigation.pop();

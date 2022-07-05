@@ -5,6 +5,7 @@ import {
 
 import Home from "../../pages/Home/";
 import PaymentMethods from "../../pages/PaymentMethods";
+import Products from "../../pages/Products";
 
 import lightTheme from "../../styles/themes/light";
 
@@ -34,6 +35,13 @@ export default function DrawerNavigator() {
         component={PaymentMethods}
         options={{
           title: "Formas de Pagamento",
+        }}
+      />
+      <Drawer.Screen
+        name="Products"
+        component={Products}
+        options={{
+          title: "Produtos",
         }}
       />
     </Drawer.Navigator>

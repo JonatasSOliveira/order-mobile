@@ -2,7 +2,8 @@ import PaymentMethod from "../../models/PaymentMethod";
 
 type RootStackParamList = {
   DrawerNavigator: undefined;
-  PaymentMethodsForm: { paymentMethod?: PaymentMethod };
+  PaymentMethodForm: { paymentMethod?: PaymentMethod };
+  ProductForm: undefined;
 };
 
 export default RootStackParamList;
