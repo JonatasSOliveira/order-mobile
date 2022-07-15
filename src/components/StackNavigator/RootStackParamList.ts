@@ -4,6 +4,7 @@ type RootStackParamList = {
   DrawerNavigator: undefined;
   PaymentMethodForm: { paymentMethod?: PaymentMethod };
   ProductForm: undefined;
+  CustomerForm: undefined;
 };
 
 export default RootStackParamList;
