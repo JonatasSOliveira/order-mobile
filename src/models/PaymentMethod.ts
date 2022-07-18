@@ -17,7 +17,7 @@ export default class PaymentMethod extends BaseModel {
     }
   }
 
-  protected static get tableName(): string {
+  public static get tableName(): string {
     return "payment_methods";
   }
 

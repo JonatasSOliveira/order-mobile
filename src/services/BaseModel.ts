@@ -6,6 +6,10 @@ export interface ColumnsMappingType {
   [key: string]: {
     type: "INTEGER" | "TEXT" | "BLOB" | "NUMERIC";
     required: boolean;
+    references?: {
+      table: string;
+      column: string;
+    };
   };
 }
 
@@ -29,7 +33,7 @@ export default class BaseModel {
     }
   }
 
-  protected static get tableName(): string {
+  public static get tableName(): string {
     return "";
   }
 
