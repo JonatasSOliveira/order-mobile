@@ -44,15 +44,23 @@ export default class BaseModel {
   private static getColumns(): string {
     const columnsMapping = this.columnsMapping;
 
-    const columnsArr: string[] = [];
     const columnsNames = Object.keys(columnsMapping);
+    const columnsArr: string[] = [];
+    const foreignKeys: string[] = [];
 
     for (const key of columnsNames) {
       const nullDeclaration = columnsMapping[key].required
         ? "NOT NULL"
         : "NULL";
       const column = ` ${key} ${columnsMapping[key].type} ${nullDeclaration} `;
+
       columnsArr.push(column);
+
+      const { references } = columnsMapping[key];
+      if (references) {
+        const { table, column } = references;
+        foreignKeys.push(`FOREIGN KEY (${key}) REFERENCES ${table}(${column})`);
+      }
     }
 
     let columns = `id INTEGER PRIMARY KEY AUTOINCREMENT
@@ -60,9 +68,8 @@ export default class BaseModel {
       ,updated_at DATETIME NOT NULL
       ,deleted_at DATETIME NULL`;
 
-    if (columnsArr.length > 0) {
-      columns += `, ${columnsArr.join("\n,")}`;
-    }
+    if (columnsArr.length > 0) columns += `, ${columnsArr.join("\n,")}`;
+    if (foreignKeys.length > 0) columns += `, ${foreignKeys.join("\n,")}`;
 
     return columns;
   }
