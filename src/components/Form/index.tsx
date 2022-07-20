@@ -9,7 +9,11 @@ interface FormProps {
   onSave: () => void;
 }
 
-export default function Form({ children, onCancel, onSave }: FormProps) {
+export default function Form({
+  children,
+  onCancel,
+  onSave: onSave,
+}: FormProps) {
   return (
     <Container>
       <InputsContainer>{children}</InputsContainer>

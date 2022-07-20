@@ -7,11 +7,8 @@ import { StackNavigationProp } from "@react-navigation/stack";
 
 import RootStackParamList from "../../components/StackNavigator/RootStackParamList";
 
-import { Footer, Container, Form, FooterButton } from "./styles";
-
-import lightTheme from "../../styles/themes/light";
-
 import PaymentMethod from "../../models/PaymentMethod";
+import Form from "../../components/Form";
 
 type PaymentMethodFormNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -67,35 +64,15 @@ export default function PaymentMethodForm() {
   }, [route.params.paymentMethod]);
 
   return (
-    <Container>
-      <Form>
-        <TextInput
-          label="Nome(*)"
-          value={name}
-          onChangeText={setName}
-          mode="outlined"
-          autoFocus
-          autoCapitalize="characters"
-        />
-      </Form>
-      <Footer>
-        <FooterButton
-          mode="contained"
-          color={lightTheme.CANCEL}
-          icon="close-circle"
-          onPress={goBack}
-        >
-          Cancelar
-        </FooterButton>
-        <FooterButton
-          mode="contained"
-          color={lightTheme.SUCCESS}
-          icon="check-circle"
-          onPress={savePaymentMethod}
-        >
-          Salvar
-        </FooterButton>
-      </Footer>
-    </Container>
+    <Form onCancel={goBack} onSave={savePaymentMethod}>
+      <TextInput
+        label="Nome(*)"
+        value={name}
+        onChangeText={setName}
+        mode="outlined"
+        autoFocus
+        autoCapitalize="characters"
+      />
+    </Form>
   );
 }
