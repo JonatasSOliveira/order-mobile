@@ -17,7 +17,8 @@ export default function Products() {
   const navigation = useNavigation<drawerNavigatorProp>();
 
   async function loadData() {
-    return [];
+    const products = await Product.getAll();
+    return products;
   }
 
   function onNew() {
