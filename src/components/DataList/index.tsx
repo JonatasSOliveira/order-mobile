@@ -66,7 +66,9 @@ export default function DataList<T extends BaseModel>({
   }
 
   useEffect(() => {
-    loadDataHandler();
+    const unsubscribe = navigation.addListener("focus", loadDataHandler);
+
+    return unsubscribe;
   }, []);
 
   return (
@@ -89,7 +91,7 @@ export default function DataList<T extends BaseModel>({
           mode="contained"
           color={lightTheme.PRIMARY}
           icon="plus-circle"
-          onPress={onPressNew}
+          onPress={() => onPressNew()}
         >
           {buttonLabel}
         </Button>
