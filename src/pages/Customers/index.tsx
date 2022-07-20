@@ -9,32 +9,32 @@ import RootStackParamList from "../../components/StackNavigator/RootStackParamLi
 import Customer from "../../models/Customer";
 
 type drawerNavigatorProp = StackNavigationProp<
-	RootStackParamList,
-	"DrawerNavigator"
+  RootStackParamList,
+  "DrawerNavigator"
 >;
 
 export default function Customers() {
-	const navigation = useNavigation<drawerNavigatorProp>();
+  const navigation = useNavigation<drawerNavigatorProp>();
 
-	const cliente: variavelCliente;
+  // const cliente: variavelCliente;
 
-	async function loadData() {
-		return [];
-	}
+  async function loadData() {
+    return [];
+  }
 
-	function onNew() {
-		// navigation.navigate("ProductForm");
-	}
+  function onNew() {
+    // navigation.navigate("ProductForm");
+  }
 
-	function onEdit() {}
+  function onEdit() {}
 
-	return (
-		<DataList<Customer>
-			loadData={loadData}
-			buttonLabel="Novo Cliente"
-			onPressNew={onNew}
-			onPressEdit={onEdit}
-			getRowText={(customer) => customer.getName()}
-		/>
-	);
+  return (
+    <DataList<Customer>
+      loadData={loadData}
+      buttonLabel="Novo Cliente"
+      onPressNew={onNew}
+      onPressEdit={onEdit}
+      getRowText={(customer) => customer.getName()}
+    />
+  );
 }

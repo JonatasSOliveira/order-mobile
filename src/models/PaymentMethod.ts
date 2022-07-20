@@ -1,7 +1,7 @@
 import BaseModel, {
   BaseModelObj,
   ColumnsMappingType,
-} from "../services/BaseModel";
+} from "../services/sqlite/BaseModel";
 
 interface PaymentMethodObj extends BaseModelObj {
   name: string;

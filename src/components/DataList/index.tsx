@@ -11,7 +11,7 @@ import { Container, ListContainer, Row } from "./styles";
 import RootStackParamList from "../../components/StackNavigator/RootStackParamList";
 
 import lightTheme from "../../styles/themes/light";
-import BaseModel from "../../services/BaseModel";
+import BaseModel from "../../services/sqlite/BaseModel";
 
 type drawerNavigatorProp = StackNavigationProp<
   RootStackParamList,

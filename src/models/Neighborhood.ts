@@ -1,4 +1,4 @@
-import BaseModel, { ColumnsMappingType } from "../services/BaseModel";
+import BaseModel, { ColumnsMappingType } from "../services/sqlite/BaseModel";
 
 export default class Neighborhood extends BaseModel {
   private name: string = "";

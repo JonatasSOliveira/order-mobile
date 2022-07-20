@@ -1,4 +1,4 @@
-import BaseModel, { ColumnsMappingType } from "../services/BaseModel";
+import BaseModel, { ColumnsMappingType } from "../services/sqlite/BaseModel";
 
 import City from "./City";
 import Neighborhood from "./Neighborhood";
