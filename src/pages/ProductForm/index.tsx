@@ -1,9 +1,14 @@
+import React, { useState } from "react";
+
 import { View, Text } from "react-native";
-import React from "react";
 
 import Form from "../../components/Form/index";
 
 export default function ProductForm() {
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState(0);
+
   function onCancel() {}
 
   function onSave() {}
