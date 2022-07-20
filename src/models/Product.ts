@@ -5,7 +5,7 @@ export default class Product extends BaseModel {
   private description: string = "";
   private price: number = 0;
 
-  protected static get tableName(): string {
+  public static get tableName(): string {
     return "product";
   }
 
