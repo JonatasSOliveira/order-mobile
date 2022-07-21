@@ -4,7 +4,7 @@ import { Container, Footer, FooterButton, InputsContainer } from "./styles";
 import lightTheme from "../../styles/themes/light";
 
 interface FormProps {
-  children: JSX.Element;
+  children: JSX.Element | JSX.Element[];
   onCancel: () => void;
   onSave: () => void;
 }
