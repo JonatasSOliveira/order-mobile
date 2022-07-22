@@ -33,6 +33,7 @@ export default function PaymentMethods() {
       onPressNew={openPaymentMethodForm}
       onPressEdit={openPaymentMethodForm}
       getRowText={(paymentMethod) => paymentMethod.getName()}
+      onPressDelete={() => {}}
     />
   );
 }

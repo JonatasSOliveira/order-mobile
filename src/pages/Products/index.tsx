@@ -34,6 +34,7 @@ export default function Products() {
       onPressNew={onNew}
       onPressEdit={onEdit}
       getRowText={() => ""}
+      onPressDelete={() => {}}
     />
   );
 }

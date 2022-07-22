@@ -35,6 +35,7 @@ export default function Customers() {
       onPressNew={onNew}
       onPressEdit={onEdit}
       getRowText={(customer) => customer.getName()}
+      onPressDelete={() => {}}
     />
   );
 }

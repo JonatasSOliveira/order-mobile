@@ -19,3 +19,11 @@ export const Row = styled.View`
   justify-content: space-between;
   align-items: center;
 `;
+
+export const RowText = styled.Text`
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
+  margin-left: 10px;
+  width: 75%;
+`;
