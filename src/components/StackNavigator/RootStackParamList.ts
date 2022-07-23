@@ -1,9 +1,10 @@
 import PaymentMethod from "../../models/PaymentMethod";
+import Product from "../../models/Product";
 
 type RootStackParamList = {
   DrawerNavigator: undefined;
   PaymentMethodForm: { paymentMethod?: PaymentMethod };
-  ProductForm: undefined;
+  ProductForm: { product?: Product };
   CustomerForm: undefined;
 };
 

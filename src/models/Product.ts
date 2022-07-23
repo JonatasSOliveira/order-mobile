@@ -44,7 +44,7 @@ export default class Product extends BaseModel {
     };
   }
 
-  public getName() {
+  public getName(): string {
     return this.name;
   }
 
@@ -52,7 +52,7 @@ export default class Product extends BaseModel {
     this.name = name;
   }
 
-  public getDescription() {
+  public getDescription(): string | null {
     return this.description;
   }
 
@@ -60,7 +60,7 @@ export default class Product extends BaseModel {
     this.description = description;
   }
 
-  public getPrice() {
+  public getPrice(): number {
     return this.price;
   }
 
@@ -75,5 +75,15 @@ export default class Product extends BaseModel {
     );
 
     return products;
+  }
+
+  public async save(): Promise<void> {
+    const productToSave = {
+      name: this.name.trim().toUpperCase(),
+      description: this.description?.trim().toUpperCase(),
+      price: this.price
+    }
+
+    await super.save(Product.tableName, productToSave);
   }
 }

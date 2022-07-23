@@ -5,9 +5,9 @@ import { TextInput } from "react-native-paper";
 import { useNavigation, useRoute, RouteProp } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 
-import RootStackParamList from "../../components/StackNavigator/RootStackParamList";
-
 import PaymentMethod from "../../models/PaymentMethod";
+
+import RootStackParamList from "../../components/StackNavigator/RootStackParamList";
 import Form from "../../components/Form";
 
 type PaymentMethodFormNavigationProp = StackNavigationProp<
