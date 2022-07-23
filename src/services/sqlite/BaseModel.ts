@@ -212,4 +212,13 @@ export default class BaseModel {
     }
     return await this.create(tableName, values);
   }
+
+  protected async delete(tableName: string): Promise<void> {
+    const nowDate = moment().format("YYYY-MM-DD HH:mm:ss");
+    const values: ColumnsType = {
+      deleted_at: nowDate,
+    }
+
+    await this.update(tableName, values);
+  }
 }
