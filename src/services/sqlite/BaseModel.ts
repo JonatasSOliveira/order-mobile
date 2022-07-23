@@ -173,6 +173,7 @@ export default class BaseModel {
     const tableName = this.tableName;
     const selectSql = `
       SELECT * FROM ${tableName}
+      WHERE deleted_at IS NULL
     `;
 
     return new Promise<T[]>((resolve, reject) => {
@@ -217,7 +218,7 @@ export default class BaseModel {
     const nowDate = moment().format("YYYY-MM-DD HH:mm:ss");
     const values: ColumnsType = {
       deleted_at: nowDate,
-    }
+    };
 
     await this.update(tableName, values);
   }
