@@ -33,7 +33,7 @@ export default function PaymentMethodForm() {
   async function savePaymentMethod() {
     try {
       if (!name.trim()) {
-        Alert.alert("Atenção", "Preencha o nome do método de pagamento");
+        Alert.alert("Atenção", "Preencha o nome da forma de pagamento");
         return;
       }
 

@@ -23,10 +23,12 @@ interface CommonProps<T extends BaseModel> {
   getRowText(item: T): string;
   onPressEdit(item: T): void;
   onPressDelete(item: T): void;
+
 }
 
 interface DataRowProps<T extends BaseModel> extends CommonProps<T> {
   item: T;
+  loadDataHandler(): void;
 }
 
 interface DataListProps<T extends BaseModel> extends CommonProps<T> {
@@ -40,14 +42,20 @@ function DataRow<T extends BaseModel>({
   onPressEdit,
   item,
   onPressDelete,
+  loadDataHandler
 }: DataRowProps<T>) {
   const rowText = getRowText(item);
+
+  async function deleteItem() {
+    await onPressDelete(item);
+    loadDataHandler();
+  }
 
   function confirmDeleteItem() {
     Alert.alert("Atenção", `Deseja realmente excluir "${rowText}"?`, [
       { text: "Não" },
       {
-        onPress: () => onPressDelete(item),
+        onPress: deleteItem,
         text: "Sim",
       },
     ]);
@@ -99,6 +107,7 @@ export default function DataList<T extends BaseModel>({
               getRowText={getRowText}
               onPressEdit={onPressEdit}
               onPressDelete={onPressDelete}
+              loadDataHandler={loadDataHandler}
             />
           )}
           keyExtractor={(item) => item.getId().toString()}

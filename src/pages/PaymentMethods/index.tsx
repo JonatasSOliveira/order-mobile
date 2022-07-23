@@ -1,5 +1,6 @@
 import React from "react";
 
+import { Alert } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 
@@ -26,6 +27,24 @@ export default function PaymentMethods() {
     navigation.navigate("PaymentMethodForm", { paymentMethod });
   }
 
+  async function deletePaymentMethod(paymentMethod: PaymentMethod) {
+    const paymentMethodName: string = paymentMethod.getName()
+    let alertTitle: string, alertMessage: string;
+
+    try {
+      await paymentMethod.delete();
+      alertTitle = "Sucesso!";
+      alertMessage =  `Forma de pagamento "${paymentMethodName}" excluída com sucesso!`;
+
+    } catch (error) {
+      alertTitle = "Atenção!";
+      alertMessage =  `Erro ao excluir a forma de pagamento "${paymentMethodName}"!`;
+      throw error;
+    } finally {
+      Alert.alert(alertTitle, alertMessage, [{ text: "OK" },]);      
+    }
+  }
+
   return (
     <DataList<PaymentMethod>
       loadData={loadData}
@@ -33,7 +52,7 @@ export default function PaymentMethods() {
       onPressNew={openPaymentMethodForm}
       onPressEdit={openPaymentMethodForm}
       getRowText={(paymentMethod) => paymentMethod.getName()}
-      onPressDelete={() => {}}
+      onPressDelete={deletePaymentMethod}
     />
   );
 }

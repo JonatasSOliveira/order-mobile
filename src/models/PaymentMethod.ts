@@ -54,4 +54,8 @@ export default class PaymentMethod extends BaseModel {
 
     await super.save(PaymentMethod.tableName, valuesToSave);
   }
+
+  public async delete(): Promise<void> {
+    await super.delete(PaymentMethod.tableName);
+  }
 }
