@@ -14,7 +14,7 @@ export interface ColumnsMappingType {
 }
 
 export interface ColumnsType {
-  [key: string]: string | number;
+  [key: string]: string | number | null;
 }
 
 export interface BaseModelObj {
@@ -109,6 +109,16 @@ export default class BaseModel {
     });
   }
 
+  private getFormatedValue(value: string | number | null) {
+    if (value === null) {
+      return "NULL";
+    } else if (typeof value === "string") {
+      return `"${value}"`;
+    } else {
+      return `${value}`;
+    }
+  }
+
   private create(tableName: string, values: ColumnsType): Promise<void> {
     const nowDate = moment().format("YYYY-MM-DD HH:mm:ss");
     const columnsNames: string[] = ["created_at", "updated_at"];
@@ -116,7 +126,9 @@ export default class BaseModel {
 
     for (const key of Object.keys(values)) {
       columnsNames.push(key);
-      columnValues.push(`"${values[key]}"`);
+      let value = this.getFormatedValue(values[key]);
+
+      columnValues.push(value);
     }
 
     const insertSql = `
@@ -145,7 +157,8 @@ export default class BaseModel {
     const columns: string[] = [];
 
     for (const key of Object.keys(values)) {
-      columns.push(`${key} = "${values[key]}"`);
+      let value = this.getFormatedValue(values[key]);
+      columns.push(`${key} = ${value}`);
     }
 
     const updateSql = `

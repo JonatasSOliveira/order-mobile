@@ -21,18 +21,16 @@ export default function Products() {
     return products;
   }
 
-  function onNew() {
-    navigation.navigate("ProductForm");
+  function openProductForm(product?: Product) {
+    navigation.navigate("ProductForm", { product });
   }
-
-  function onEdit() {}
 
   return (
     <DataList<Product>
       loadData={loadData}
       buttonLabel="Novo Produto"
-      onPressNew={onNew}
-      onPressEdit={onEdit}
+      onPressNew={openProductForm}
+      onPressEdit={openProductForm}
       getRowText={() => ""}
       onPressDelete={() => {}}
     />

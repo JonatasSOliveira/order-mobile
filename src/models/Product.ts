@@ -80,9 +80,9 @@ export default class Product extends BaseModel {
   public async save(): Promise<void> {
     const productToSave = {
       name: this.name.trim().toUpperCase(),
-      description: this.description?.trim().toUpperCase(),
-      price: this.price
-    }
+      description: this.description?.trim().toUpperCase() ?? null,
+      price: this.price,
+    };
 
     await super.save(Product.tableName, productToSave);
   }

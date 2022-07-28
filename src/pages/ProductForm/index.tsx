@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { Alert } from 'react-native'
+import { Alert } from "react-native";
 import { TextInput } from "react-native-paper";
 import { useNavigation, useRoute, RouteProp } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
@@ -9,21 +9,19 @@ import Product from "../../models/Product";
 
 import RootStackParamList from "../../components/StackNavigator/RootStackParamList";
 import Form from "../../components/Form/index";
+import { formatToCurrency } from "../../utils/number";
 
 type ProductFormNavigationProp = StackNavigationProp<
   RootStackParamList,
   "ProductForm"
 >;
 
-type ProductFormRouteProp = RouteProp<
-  RootStackParamList,
-  "ProductForm"
->;
+type ProductFormRouteProp = RouteProp<RootStackParamList, "ProductForm">;
 
 export default function ProductForm() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
+  const [price, setPrice] = useState("0,00");
 
   const navigation = useNavigation<ProductFormNavigationProp>();
   const route = useRoute<ProductFormRouteProp>();
@@ -45,12 +43,13 @@ export default function ProductForm() {
 
       if (route.params?.product) {
         product = route.params.product;
-        product.setName(name);
-        product.setDescription(description);
-        product.setPrice(formatedPrice);
       } else {
-        product = new Product({ name, description, price: formatedPrice });
+        product = new Product();
       }
+
+      product.setName(name);
+      product.setDescription(description);
+      product.setPrice(formatedPrice);
 
       await product.save();
       Alert.alert("Sucesso!", "Produto salvo com sucesso!", [
@@ -61,19 +60,24 @@ export default function ProductForm() {
     }
   }
 
+  function handlerSetPrice(value: string) {
+    setPrice(formatToCurrency(value));
+  }
+
   useEffect(() => {
     if (route.params?.product) {
       const product = route.params.product;
       const price: string = product.getPrice().toFixed(2).replace(".", ",");
+      const description = product.getDescription() || "";
 
       setName(product.getName());
-      setDescription(product.getDescription());
-      setPrice(price)
+      setDescription(description);
+      setPrice(price);
     }
   }, [route.params.product]);
 
   return (
-    <Form onCancel={goBack} onSave={onSave}>
+    <Form onCancel={goBack} onSave={saveProduct}>
       <TextInput
         label="Nome(*)"
         value={name}
@@ -87,18 +91,16 @@ export default function ProductForm() {
         value={description}
         onChangeText={setDescription}
         mode="outlined"
-        autoFocus
         autoCapitalize="characters"
         multiline
-        numberOfLines={10}
+        numberOfLines={8}
       />
       <TextInput
         label="Preço(*)"
         value={price}
-        onChangeText={setPrice}
+        onChangeText={handlerSetPrice}
         mode="outlined"
         keyboardType="numeric"
-        autoFocus
       />
     </Form>
   );
